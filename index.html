@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chemical Battery Design Project: Student Notes</title>
+<meta name="description" content="Student notes for the UNSW Experience Chemical Engineering Week Chemical Battery Design Project (Years 10-11).">
+<meta name="theme-color" content="#05070d">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05070d; --bg2:#0a0f1c; --card:#0e1526; --card2:#121b31; --line:#1f2b47; --line2:#2c3b5f;
+  --ink:#eef2f9; --mute:#8f9cb5; --navy:#203864;
+  --y:#ffd43b; --b:#4b9ce2; --o:#f28a43; --r:#ef5b50; --g:#5fd39a;
+  --serif:"Instrument Serif","Iowan Old Style","Times New Roman",serif;
+  --mono:"Space Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --dot:"Doto","Space Mono",ui-monospace,Menlo,Consolas,monospace;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --gut:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;
+  background-image:radial-gradient(rgba(143,156,181,.22) 1px,transparent 1.4px);background-size:28px 28px;background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--gut)}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--mute)}
+.dot{font-family:var(--dot);font-weight:700}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* nav pill */
+.nav{position:sticky;top:12px;z-index:50;margin:12px auto 0;width:min(100% - 24px,820px);
+  display:flex;align-items:center;gap:6px;padding:6px 6px 6px 16px;border-radius:999px;
+  background:rgba(14,21,38,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line2)}
+.brand{font-family:var(--dot);font-weight:800;font-size:15px;letter-spacing:.06em;white-space:nowrap;display:flex;gap:8px;align-items:center;text-decoration:none}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+.nav ul{list-style:none;display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav a.l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--mute);
+  padding:9px 12px;border-radius:999px;white-space:nowrap;display:block}
+.nav a.l:hover{color:var(--ink)}
+.nav a.l.on{background:var(--ink);color:#05070d}
+
+/* hero */
+.hero{padding:clamp(48px,9vw,110px) 0 56px;position:relative}
+.hero .eyebrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.pill{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line2);border-radius:999px;padding:6px 12px;color:var(--mute);display:inline-flex;gap:8px;align-items:center}
+.pill b{width:7px;height:7px;border-radius:50%;background:var(--y);display:inline-block}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(52px,11vw,128px);line-height:.92;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--y)}
+.lede{font-size:clamp(18px,2.4vw,24px);color:#c7d0e2;max-width:620px;margin-top:26px;line-height:1.4}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:14px 20px;border-radius:12px;background:var(--ink);color:#05070d;display:inline-flex;gap:10px;align-items:center;border:1px solid var(--ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line2)}
+.btn:hover{transform:translateY(-1px)}
+.herogrid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end}
+.heroimg{border-radius:28px;overflow:hidden;border:1px solid var(--line2);position:relative;aspect-ratio:4/5;background:#000}
+.heroimg img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.05)}
+.heroimg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(5,7,13,.65) 1px,transparent 1.5px);background-size:6px 6px;mix-blend-mode:multiply;opacity:.6}
+.heroimg span{position:absolute;left:14px;bottom:14px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(5,7,13,.7);padding:6px 10px;border-radius:999px}
+@media (max-width:820px){.herogrid{grid-template-columns:1fr}.heroimg{aspect-ratio:16/10;order:-1}}
+
+/* sections */
+section{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--line)}
+.sh{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;margin-bottom:34px}
+.sh .idx{font-family:var(--dot);font-weight:800;font-size:clamp(44px,8vw,84px);line-height:1;color:var(--acc,var(--y))}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,68px);line-height:1;letter-spacing:-.015em}
+h2 em{font-style:italic;color:var(--acc,var(--y))}
+h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.6vw,38px);line-height:1.05}
+h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-bottom:14px}
+.sub{color:#c7d0e2;font-size:clamp(17px,2vw,21px);max-width:640px;margin-top:12px}
+.s1{--acc:var(--b)}.s2{--acc:var(--o)}.s3{--acc:var(--y)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}}
+@media (max-width:620px){.g2,.g4{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;padding:22px}
+.card h5{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;margin-bottom:8px}
+.card p{color:#c7d0e2;font-size:16px}
+.card .n{font-family:var(--dot);font-weight:800;font-size:44px;line-height:1;color:var(--acc,var(--y));margin-bottom:10px}
+
+/* callout */
+.call{display:flex;gap:16px;align-items:flex-start;border-radius:18px;padding:16px 18px;margin-top:18px;border:1px solid var(--line2);background:var(--card)}
+.call .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--y);color:#05070d;white-space:nowrap;margin-top:1px;font-weight:700}
+.call p{color:#dbe2f0;font-size:16px}
+.call.red{border-color:rgba(239,91,80,.5);background:rgba(239,91,80,.07)}.call.red .tag{background:var(--r);color:#fff}
+.call.blue .tag{background:var(--b)}.call.org .tag{background:var(--o)}
+@media (max-width:560px){.call{flex-direction:column;gap:8px}}
+
+/* experiment */
+.exp{margin-top:44px;border:1px solid var(--line2);border-radius:30px;padding:clamp(18px,3vw,34px);background:rgba(10,15,28,.72)}
+.exp header{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.exp header .mono b{color:var(--acc)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:22px}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+ol.obj{list-style:none;counter-reset:o;display:grid;gap:10px}
+ol.obj li{counter-increment:o;display:flex;gap:12px;color:#dbe2f0;font-size:16px}
+ol.obj li::before{content:counter(o);font-family:var(--dot);font-weight:800;color:var(--acc);font-size:22px;line-height:1.1;flex:0 0 22px}
+ul.need{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+ul.need li{border:1px solid var(--line2);border-radius:12px;padding:7px 11px;font-size:14.5px;color:#dbe2f0;background:var(--card)}
+ul.need li b{font-family:var(--mono);font-weight:700;color:var(--acc);margin-right:6px;font-size:13px}
+.steps{list-style:none;display:grid;gap:10px;margin-top:6px}
+.step{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:var(--card);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.step input{position:absolute;opacity:0;pointer-events:none}
+.step .num{flex:0 0 34px;height:34px;border-radius:50%;border:1.5px solid var(--acc);display:grid;place-items:center;font-family:var(--dot);font-weight:800;font-size:17px;color:var(--acc)}
+.step .txt{font-size:16.5px;color:#e4e9f5;padding-top:3px}
+.step:hover{border-color:var(--line2)}
+.step input:checked ~ .num{background:var(--acc);color:#05070d}
+.step input:checked ~ .txt{color:var(--mute);text-decoration:line-through;text-decoration-color:rgba(143,156,181,.5)}
+.step input:focus-visible ~ .num{outline:2px solid var(--ink);outline-offset:3px}
+.hint{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-top:12px}
+.fig{background:#fff;border-radius:20px;padding:10px;border:1px solid var(--line2)}
+.fig img{width:100%;height:auto;border-radius:12px}
+.fig+.cap,.cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:8px}
+.photo{border-radius:20px;overflow:hidden;border:1px solid var(--line2)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.how{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;margin-top:30px;align-items:start}
+@media (max-width:900px){.how{grid-template-columns:1fr}}
+.how.noimg{grid-template-columns:1fr}
+.how.noimg .steps{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.how.noimg .steps{grid-template-columns:1fr}}
+.sticky{position:sticky;top:96px}
+@media (max-width:900px){.sticky{position:static}}
+
+/* tools */
+.tool{border:1px solid var(--line2);border-radius:26px;padding:clamp(18px,3vw,30px);background:var(--card);margin-top:18px}
+.tool .row{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin-top:14px}
+label.f{display:grid;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+input[type=number],select{font-family:var(--dot);font-weight:700;font-size:26px;background:#05070d;border:1px solid var(--line2);border-radius:14px;color:var(--ink);padding:10px 14px;min-width:150px;max-width:100%;appearance:none;-webkit-appearance:none}
+select{font-family:var(--sans);font-weight:500;font-size:18px;padding-right:34px;background-image:linear-gradient(45deg,transparent 50%,var(--mute) 50%),linear-gradient(135deg,var(--mute) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+input:focus,select:focus{outline:2px solid var(--y);outline-offset:2px}
+.out{display:flex;gap:28px;flex-wrap:wrap;margin-top:6px}
+.out div{min-width:120px}
+.out .big{font-family:var(--dot);font-weight:800;font-size:clamp(38px,7vw,60px);line-height:1;color:var(--y)}
+.out small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+.eq{font-family:var(--dot);font-weight:800;font-size:clamp(28px,5vw,44px);color:var(--ink);letter-spacing:.02em}
+.qa{display:grid;gap:10px;margin-top:22px}
+details{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:0}
+summary{list-style:none;cursor:pointer;padding:16px 18px;font-size:17px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--dot);font-weight:800;font-size:24px;color:var(--acc,var(--y))}
+details[open] summary::after{content:"–"}
+details .a{padding:0 18px 16px;color:#c7d0e2}
+
+/* story scroller */
+.story{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;margin:0 calc(var(--gut) * -1);padding-left:var(--gut);padding-right:var(--gut);scrollbar-width:thin}
+.story article{flex:0 0 min(86%,420px);scroll-snap-align:start;border:1px solid var(--line);border-radius:24px;background:var(--card);padding:16px;display:flex;flex-direction:column;gap:14px}
+.story article .fig{padding:6px}
+.story article p{color:#c7d0e2;font-size:15.5px}
+.story article .k{font-family:var(--dot);font-weight:800;font-size:32px;color:var(--b);line-height:1}
+
+/* rules */
+.stat{text-align:left}
+.stat .v{font-family:var(--dot);font-weight:800;font-size:clamp(40px,6vw,64px);color:var(--y);line-height:1}
+.stat p{margin-top:8px;color:#c7d0e2}
+.bar{margin-top:14px;height:14px;border-radius:999px;border:1px solid var(--line2);background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--line2) calc(10% - 1px) 10%)}
+.bar i{display:block;height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,var(--y),#ffb100)}
+
+/* waste */
+.bin{position:relative;overflow:hidden}
+.bin .top{height:8px;border-radius:999px;margin-bottom:18px}
+.prize .n{font-size:64px}
+
+/* timer */
+.timer{position:fixed;right:14px;bottom:14px;z-index:60;display:flex;gap:8px;align-items:center;padding:8px 8px 8px 16px;border-radius:999px;background:rgba(14,21,38,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line2);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.timer .t{font-family:var(--dot);font-weight:800;font-size:26px;letter-spacing:.04em;min-width:86px}
+.timer .msg{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);max-width:130px;line-height:1.25}
+.timer.flash{border-color:var(--y);box-shadow:0 0 0 3px rgba(255,212,59,.25),0 10px 40px rgba(0,0,0,.5)}
+.timer.flash .msg{color:var(--y)}
+.timer button{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:0;border-radius:999px;padding:11px 14px;background:var(--ink);color:#05070d;cursor:pointer}
+.timer button.g{background:transparent;color:var(--ink);border:1px solid var(--line2)}
+@media (max-width:520px){.timer .msg{display:none}.timer{left:12px;right:12px;justify-content:space-between}}
+
+.ask{position:fixed;left:14px;bottom:14px;z-index:55;display:none}
+footer{padding:70px 0 120px;border-top:1px solid var(--line);text-align:left}
+footer h2{font-size:clamp(48px,10vw,120px)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Sections"><a class="brand" href="#top"><i></i>CHEM·BATTERY</a>
+<ul><li><a class="l" href="#safety">Safety</a></li><li><a class="l" href="#toolkit">Toolkit</a></li><li><a class="l" href="#s1">Session 1</a></li><li><a class="l" href="#s2">Session 2</a></li><li><a class="l" href="#s3">Session 3</a></li><li><a class="l" href="#waste">Waste</a></li></ul></nav>
+<main>
+
+<header class="hero" id="top"><div class="wrap herogrid">
+ <div>
+  <div class="eyebrow"><span class="pill"><b></b>UNSW Experience Chemical Engineering Week</span><span class="pill">Years 10–11</span></div>
+  <h1>Chemical<br><em>Battery</em> Design Project</h1>
+  <p class="lede">Build a battery from metals and acid, power a Lego car, and win the race!</p>
+  <div class="cta"><a class="btn" href="#s1">Session 1 <span>↓</span></a><a class="btn ghost" href="#safety">Safety first</a><a class="btn ghost" href="#waste">Waste sorting</a></div>
+  <p class="mono" style="margin-top:28px">Student notes &amp; activity guide · Wed 21 · Thu 22 · Fri 23 Oct 2026</p>
+ </div>
+ <div class="heroimg"><img src="img/car-blue.jpg" alt="The Lego race car at the start line"><span>Your race car</span></div>
+</div></header>
+
+<section id="intro"><div class="wrap">
+<div class="sh reveal"><span class="idx">00</span><div><p class="mono">Why this matters</p><h2>Transforming <em>transport</em></h2></div></div>
+<div class="grid g2 reveal" style="align-items:stretch">
+  <div class="photo"><img src="img/traffic.jpg" alt="Traffic and exhaust fumes next to electric vehicles charging" loading="lazy"></div>
+  <div class="card">
+    <p class="sub" style="margin:0 0 18px">Our reliance on fossil fuel powered cars contributes to climate change, poor air quality and energy insecurity.</p>
+    <div class="grid" style="gap:10px">
+      <div class="call" style="margin:0"><span class="tag" style="background:var(--b)">1</span><p>Less air pollution and less reliance on fossil fuels</p></div>
+      <div class="call" style="margin:0"><span class="tag" style="background:var(--b)">2</span><p>Rechargeable batteries replace petrol as the power source</p></div>
+      <div class="call" style="margin:0"><span class="tag">THIS WEEK</span><p>You will work on one of the biggest shifts in the economy: the electrification of transport.</p></div>
+    </div>
+  </div>
+</div>
+<div class="card reveal" style="margin-top:14px">
+  <h4>At UNSW</h4>
+  <p style="font-size:18px">Dedicated research groups work on renewable energy and next-generation batteries, including <b>lithium-sulfur</b>, <b>aluminium ion</b> and <b>vanadium flow</b> cells. It is one exciting area you can explore in chemical engineering.</p>
+</div>
+
+<div class="sh reveal" style="margin-top:80px"><span class="idx">★</span><div><p class="mono">Your mission this week</p><h2>Build it. <em>Race it.</em></h2></div></div>
+<div class="grid g3 reveal">
+  <div class="card"><div class="n">1</div><h5>Design and build a wet cell battery</h5><p>Work in teams of 4–5. Battery construction is guided step by step, and you get the freedom to choose materials near the end.</p></div>
+  <div class="card"><div class="n">2</div><h5>Power a Lego EV race car</h5><p>Race in a new motorsport series on a 5 m straight track.</p></div>
+  <div class="card"><div class="n">3</div><h5>Fastest car wins</h5><p>The team whose battery makes the car go fastest wins!</p></div>
+</div>
+<div class="grid g2 reveal" style="margin-top:14px">
+  <div class="photo"><img src="img/car-red.jpg" alt="Lego car example" loading="lazy"></div>
+  <div class="photo"><img src="img/car-blue.jpg" alt="Lego car example at the start line" loading="lazy"></div>
+</div>
+<p class="cap">Lego car examples</p>
+
+<div class="sh reveal" style="margin-top:80px"><span class="idx">3D</span><div><p class="mono">Plan for the week</p><h2>Three days, <em>one battery</em></h2></div></div>
+<div class="grid g3 reveal">
+  <a class="card s1" href="#s1" style="text-decoration:none"><p class="mono">Wed 21 Oct</p><h5 style="color:var(--b)">Familiarisation</h5><p>Use a multimeter. Build a simple metal-acid cell. Connect cells in series and parallel.</p></a>
+  <a class="card s2" href="#s2" style="text-decoration:none"><p class="mono">Thu 22 Oct</p><h5 style="color:var(--o)">Wet Cell Chemistry</h5><p>Test different metals and solutions. Change the surface area. Design your battery.</p></a>
+  <a class="card s3" href="#s3" style="text-decoration:none"><p class="mono">Fri 23 Oct</p><h5 style="color:var(--y)">Race Day!</h5><p>Optimise and build your battery pack. Race your Lego car on the 5 m track.</p></a>
+</div>
+</div></section>
+
+<section id="safety" style="--acc:var(--r)"><div class="wrap">
+<div class="sh reveal"><span class="idx">!</span><div><p class="mono">Every session</p><h2>Safety <em>first!</em></h2><p class="sub">PPE for everyone at all times: gloves, goggles and a lab coat.</p></div></div>
+<div class="grid g3 reveal"><div class="card" style="--acc:var(--r)"><div class="n">1</div><h5>Protect yourself</h5><p>Wear gloves, goggles and a lab coat. Protect your eyes and hands.</p></div><div class="card" style="--acc:var(--r)"><div class="n">2</div><h5>Spills</h5><p>Tell a demonstrator straight away. Work over the trays.</p></div><div class="card" style="--acc:var(--r)"><div class="n">3</div><h5>No eating or drinking</h5><p>Not in the lab, ever.</p></div><div class="card" style="--acc:var(--r)"><div class="n">4</div><h5>Hands off your face</h5><p>Do not touch your face. Wash your hands when you finish.</p></div><div class="card" style="--acc:var(--r)"><div class="n">5</div><h5>Sharp metals</h5><p>Metal strips and sheets can cut. Handle with care.</p></div><div class="card" style="--acc:var(--r)"><div class="n">6</div><h5>Use the right bin</h5><p>Acid goes in your beaker, then the liquid waste. Sort solids into the right bin.</p></div></div>
+<div class="call red"><span class="tag">NOT SURE?</span><p>Ask a demonstrator before you do anything you are unsure about.</p></div>
+</div></section>
+
+<section id="toolkit"><div class="wrap">
+<div class="sh reveal"><span class="idx">V·I·P</span><div><p class="mono">Before we start</p><h2>Our toolkit: <em>voltage,</em> current and power</h2></div></div>
+<div class="grid g3 reveal">
+  <div class="card"><h4>Voltage (V)</h4><div class="eq">V</div><p style="margin-top:10px">How hard the battery pushes the charge. We <b>MEASURE</b> it with the multimeter, across the 1&nbsp;Ω resistor.</p></div>
+  <div class="card"><h4>Current (I)</h4><div class="eq">I = V ÷ R</div><p style="margin-top:10px">How much charge flows each second. We <b>CALCULATE</b> it.</p></div>
+  <div class="card"><h4>Power (P)</h4><div class="eq">P = V × I</div><p style="margin-top:10px">How fast the battery can do work. This is what moves the car! We <b>CALCULATE</b> it.</p></div>
+</div>
+<div class="call "><span class="tag">TOP TIP</span><p>Our resistor is exactly 1 Ω, so the current in amps has the same number as the voltage in volts (I = V ÷ 1).</p></div>
+<div class="call blue"><span class="tag">REMEMBER</span><p>We never measure current directly. We measure V across the resistor, then calculate I and P.</p></div>
+<div class="tool reveal" id="calc">
+  <h4>Quick calculator</h4>
+  <p style="color:#c7d0e2">Type the voltage you read across the 1&nbsp;Ω resistor.</p>
+  <div class="row">
+    <label class="f">Voltage V (volts)<input id="vin" type="number" inputmode="decimal" step="any" min="0" placeholder="0.00"></label>
+    <div class="out"><div><span class="big" id="iout">–</span><small>Current I (A)</small></div><div><span class="big" id="pout">–</span><small>Power P (W)</small></div></div>
+  </div>
+</div>
+</div></section>
+
+<section id="s1" class="s1"><div class="wrap">
+<div class="sh reveal"><span class="idx">01</span><div><p class="mono">Session 1 · Wednesday 21 October 2026</p><h2><em>Familiarisation</em></h2><p class="sub">Learn the multimeter, build your first wet cell, and connect cells in series and parallel.</p></div></div>
+<div class="sh reveal" style="margin-top:56px"><span class="idx" style="font-size:36px">⚡</span><div><h3>Battery basics</h3><p class="sub" style="margin-top:6px">Swipe through. Electricity is a flow of electrons, and a chemical reaction can make them flow.</p></div></div>
+<div class="story reveal"><article><div class="k">1</div><div class="fig"><img src="img/electro-1.png" alt="Electrochemistry diagram, step 1" loading="lazy"></div><p>Electricity is a flow of electrons (e⁻). They have a negative charge and flow from the negative (−) terminal to the positive (+) terminal.</p><p>To get electricity from a battery, we need to: <b>1.</b> Generate electrons <b>2.</b> Make electrons flow.</p></article><article><div class="k">2</div><div class="fig"><img src="img/electro-2.png" alt="Electrochemistry diagram, step 2" loading="lazy"></div><p><b>Generate electrons ✓</b> The e⁻ here comes from oxidation. How do we tap these e⁻ to do work?</p><p><details><summary>Answer</summary><div class='a'>Draw e⁻ via an external circuit with a positive terminal! What can you use as a positive terminal?</div></details></p></article><article><div class="k">3</div><div class="fig"><img src="img/electro-3.png" alt="Electrochemistry diagram, step 3" loading="lazy"></div><p><b>Make electrons flow ✓</b> Another half-cell can function as a positive terminal.</p><p></p></article><article><div class="k">4</div><div class="fig"><img src="img/electro-4.png" alt="Electrochemistry diagram, step 4" loading="lazy"></div><p>How long do you think the flow of e⁻ will last?</p><p><details><summary>Answer</summary><div class='a'>Only until the charge builds up enough to stop electron flow.</div></details></p></article><article><div class="k">5</div><div class="fig"><img src="img/electro-5.png" alt="Electrochemistry diagram, step 5" loading="lazy"></div><p>Connecting the two half-cells lets the reaction keep running!</p><p><b>Your main task: battery design.</b> Material selection: anode / cathode / electrolytes. Connecting cells together to make a battery pack!</p></article></div>
+
+<div class="exp reveal" id="s1e1">
+  <header><span class="mono"><b>Experiment 1 · 25 min</b></span></header>
+  <h3>Understanding Current and Voltage Measurements</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Set up a multimeter and use it to measure voltage</li><li>Calculate current and power from the voltage across a resistor (I = V ÷ R, P = V × I)</li><li>Describe how a battery’s power output changes over time</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li><b>1×</b>Multimeter</li><li><b>1×</b>AA battery</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s1e1-1"><span class="num">1</span><span class="txt">Set the multimeter to DC voltage (⎓), max 2 V. Black lead in COM, red lead in VΩmA.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e1-2"><span class="num">2</span><span class="txt">Measure the AA battery’s voltage across its terminals (swap the leads if it reads negative).</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e1-3"><span class="num">3</span><span class="txt">Connect the 1 Ω resistor as in the diagram and start the timer.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e1-4"><span class="num">4</span><span class="txt">Record the voltage across the resistor at 0, 1, 2, 3, 4 and 5 minutes.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e1-5"><span class="num">5</span><span class="txt">Calculate the current (I = V ÷ R) and power (P = V × I) for each reading.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e1-6"><span class="num">6</span><span class="txt">Plot power against time on the graph.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div><div class="fig"><img src="img/circuit.png" alt="Circuit diagram: battery, 1 ohm resistor and multimeter in a loop" loading="lazy"></div><p class="cap">Circuit for Experiment 1</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Ask a demonstrator to check your circuit before you connect it.</p></div><div class="call org"><span class="tag">RECORD</span><p>Voltage every minute for 5 minutes → calculate I and P → plot power vs time.</p></div>
+</div>
+<div class="exp reveal" id="s1e2">
+  <header><span class="mono"><b>Experiment 2 · 30 min</b></span></header>
+  <h3>Understanding Metal-Acid Batteries</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Build a simple Cu-Zn wet cell and measure its voltage, current and power</li><li>Link what you observe (bubbles, warming, voltage) to the reactions at each electrode</li><li>Identify the positive and negative electrodes</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li><b>1×</b>Multimeter</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li><li><b>1×</b>Beaker (25 mL)</li><li><b>1×</b>Copper strip</li><li><b>1×</b>Zinc sheet</li><li><b>2×</b>Filter papers</li><li>~25 mL 0.1 M HCl</li><li>PPE (gloves, goggles, lab coat)</li><li><b>1×</b>DI water bottle</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s1e2-1"><span class="num">1</span><span class="txt">Clip one Cu strip and one Zn strip to opposite sides of a clean beaker. Make sure they do not touch.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e2-2"><span class="num">2</span><span class="txt">Carefully add ~25 mL of 0.1 M HCl.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e2-3"><span class="num">3</span><span class="txt">Connect the multimeter and 1 Ω resistor as in Experiment 1.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e2-4"><span class="num">4</span><span class="txt">Record the voltage across the resistor at 0, 1, 2, 3, 4 and 5 minutes. Note what you observe (bubbles, warming).</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e2-5"><span class="num">5</span><span class="txt">Calculate current and power for each reading and plot power against time.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e2-6"><span class="num">6</span><span class="txt">Keep this cell. You need it for Experiment 3.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div><div class="fig"><img src="img/cell.png" alt="Cu and Zn strips in a beaker of 0.1 M HCl connected to a 1 ohm resistor and multimeter" loading="lazy"></div><p class="cap">Cu strip (+) · Zn strip (−)</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Wear your PPE at all times. Tell a demonstrator straight away about any spills.</p></div><div class="call blue"><span class="tag">LEGO MOTOR</span><p>Not every group gets one. When you think your cell can do it, ask a demonstrator to try it on the motor.</p></div><div class="call org"><span class="tag">OBSERVE</span><p>Bubbles? Does it get warm? Which electrode is positive and which is negative?</p></div>
+</div>
+<div class="exp reveal" id="s1e3">
+  <header><span class="mono"><b>Experiment 3 · 30 min</b></span></header>
+  <h3>Chemical Battery Configurations</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Connect two cells in series and in parallel</li><li>Compare the voltage, current and power of each configuration</li><li>Choose a configuration for an electric vehicle and justify the choice</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li>Your cell from Experiment 2</li><li><b>1×</b>Multimeter</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li><li>Second cell: beaker, Cu strip, Zn sheet</li><li><b>2×</b>Filter papers</li><li>~75 mL 0.1 M HCl</li><li><b>1×</b>Waste beaker (500 mL)</li><li>PPE (gloves, goggles, lab coat)</li><li><b>1×</b>DI water bottle</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s1e3-1"><span class="num">1</span><span class="txt">Build a second Cu-Zn cell in another beaker, as in Experiment 2. Add ~25 mL of 0.1 M HCl.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e3-2"><span class="num">2</span><span class="txt"><b>SERIES:</b> link the Cu of one cell to the Zn of the other with a clip. Connect the 1 Ω resistor across the two free terminals.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e3-3"><span class="num">3</span><span class="txt">Record the voltage across the resistor at 0 to 5 minutes.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e3-4"><span class="num">4</span><span class="txt">Pour the acid into the waste beaker. Reconnect in <b>PARALLEL</b> (Cu to Cu, Zn to Zn) with ~25 mL fresh acid in each beaker.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e3-5"><span class="num">5</span><span class="txt">Record the voltage again at 0 to 5 minutes.</span></label></li><li><label class="step"><input type="checkbox" data-k="s1e3-6"><span class="num">6</span><span class="txt">Calculate current and power for both and plot them. Then pour all acid into the waste beaker and rinse.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div><div class="fig"><img src="img/series-parallel.jpg" alt="Batteries wired in parallel (left) and in series (right)" loading="lazy"></div><p class="cap">Left: parallel · Right: series</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Wear your PPE at all times. Tell a demonstrator straight away about any spills.</p></div><div class="call blue"><span class="tag">LEGO MOTOR</span><p>Not every group gets one. When you think your cell can do it, ask a demonstrator to try it on the motor.</p></div><div class="call org"><span class="tag">COMPARE</span><p>Which configuration gave the higher voltage? Which gave the higher power?</p></div>
+</div>
+</div></section>
+
+<section id="s2" class="s2"><div class="wrap">
+<div class="sh reveal"><span class="idx">02</span><div><p class="mono">Session 2 · Thursday 22 October 2026</p><h2>Wet cell <em>chemistry</em></h2><p class="sub">Change the metals, the solution and the surface area to find your best battery.</p></div></div>
+<div class="card reveal"><h4>Recap: what we did in Session 1</h4><p style="color:#c7d0e2">Ask the room first, then reveal the answers. Today we change the metals, the solution and the surface area.</p><div class="qa"><details><summary>How did we measure power?</summary><div class="a">We measured the voltage across the 1 Ω resistor, then calculated current (I = V ÷ R) and power (P = V × I).</div></details><details><summary>How did you use the filter paper?</summary><div class="a">What does it stop the electrodes from doing?</div></details><details><summary>Series or parallel?</summary><div class="a">Which gave you more power? Is parallel really better? What does the motor need?</div></details><details><summary>What materials did you have?</summary><div class="a">Could you cut the electrodes? Work with only the materials you were given.</div></details></div></div>
+
+<div class="sh reveal" style="margin-top:64px"><span class="idx" style="font-size:36px">E°</span><div><h3>Picking electrodes: the electrochemical series</h3></div></div>
+<div class="how reveal" style="margin-top:6px">
+  <div class="grid" style="gap:12px">
+    <div class="card"><h4>More negative E°</h4><p>More likely to <b>OXIDISE</b> (lose electrons). A better <b>ANODE</b> (negative terminal).</p></div>
+    <div class="card"><h4>More positive E°</h4><p>More likely to <b>REDUCE</b> (gain electrons). A better <b>CATHODE</b> (positive terminal).</p></div>
+    <div class="call "><span class="tag">TIP</span><p>Pick metals that are far apart!</p></div>
+  </div>
+  <div class="sticky"><div><div class="fig"><img src="img/e-series.png" alt="Table of the electrochemical series from lithium to gold" loading="lazy"></div><p class="cap">Table 1: Electrochemical series</p></div></div>
+</div>
+
+<div class="tool reveal">
+  <h4>Predicting the voltage</h4>
+  <div class="eq">E°<sub style="font-size:.5em">cell</sub> = E°<sub style="font-size:.5em">cathode</sub> − E°<sub style="font-size:.5em">anode</sub></div>
+  <div class="row">
+    <label class="f">Anode (−)<select id="an"><option value="-3.03">Lithium (Li) · -3.03 V</option><option value="-2.92">Potassium (K) · -2.92 V</option><option value="-2.87">Calcium (Ca) · -2.87 V</option><option value="-2.71">Sodium (Na) · -2.71 V</option><option value="-2.37" selected>Magnesium (Mg) · -2.37 V</option><option value="-1.66">Aluminium (Al) · -1.66 V</option><option value="-0.76">Zinc (Zn) · -0.76 V</option><option value="-0.44">Iron (Fe) · -0.44 V</option><option value="-0.13">Lead (Pb) · -0.13 V</option><option value="0.0">Hydrogen (H₂) · +0.00 V</option><option value="0.34">Copper (Cu) · +0.34 V</option><option value="0.8">Silver (Ag) · +0.80 V</option><option value="1.5">Gold (Au) · +1.50 V</option></select></label>
+    <label class="f">Cathode (+)<select id="ca"><option value="-3.03">Lithium (Li) · -3.03 V</option><option value="-2.92">Potassium (K) · -2.92 V</option><option value="-2.87">Calcium (Ca) · -2.87 V</option><option value="-2.71">Sodium (Na) · -2.71 V</option><option value="-2.37">Magnesium (Mg) · -2.37 V</option><option value="-1.66">Aluminium (Al) · -1.66 V</option><option value="-0.76">Zinc (Zn) · -0.76 V</option><option value="-0.44">Iron (Fe) · -0.44 V</option><option value="-0.13">Lead (Pb) · -0.13 V</option><option value="0.0">Hydrogen (H₂) · +0.00 V</option><option value="0.34" selected>Copper (Cu) · +0.34 V</option><option value="0.8">Silver (Ag) · +0.80 V</option><option value="1.5">Gold (Au) · +1.50 V</option></select></label>
+  </div>
+  <div class="out" style="margin-top:18px"><div><span class="big" id="vcell">2.71 V</span><small>Expected voltage</small></div><div style="flex:1;min-width:200px"><span id="vmath" class="dot" style="font-size:22px;color:#c7d0e2">0.34 − (−2.37) = 2.71 V</span><small id="vnote">Anode: Mg · Cathode: Cu</small></div></div>
+  <div class="call "><span class="tag">TRY IT</span><p>Which pairing do you predict is best: Cu + Zn, Cu + Mg or Cu + Al? Use the series to explain. Check your prediction in Experiment 1.</p></div>
+  <div class="call blue"><span class="tag">REMEMBER</span><p>This is the expected (standard) voltage. Your real cells will measure lower, and that is part of the learning!</p></div>
+</div>
+
+<div class="sh reveal" style="margin-top:64px"><span class="idx" style="font-size:36px">→</span><div><h3>Today’s plan</h3></div></div>
+<div class="grid g4 reveal">
+  <div class="card"><div class="n">1</div><h5>Changing Metals</h5></div>
+  <div class="card"><div class="n">2</div><h5>Changing the Solution</h5></div>
+  <div class="card"><div class="n">3</div><h5>Changing the Surface Area</h5></div>
+  <div class="card"><div class="n">4</div><h5>Design Your Battery</h5></div>
+</div>
+<div class="grid g2 reveal" style="margin-top:14px">
+  <div class="card"><h4>Test one thing at a time</h4><p>Change only the metal, then only the solution, then only the surface area.</p></div>
+  <div class="card"><h4>Keep the best each time</h4><p>The best pairing goes into Experiment 2, and the best solution into Experiment 3.</p></div>
+</div>
+
+<div class="exp reveal" id="s2e1">
+  <header><span class="mono"><b>Experiment 1 · 30 min</b></span></header>
+  <h3>Changing Metals</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Compare the voltage and power of different metal pairings in the same acid</li><li>Use the electrochemical series to explain which pairing should perform best</li><li>Choose the best-performing pairing for the rest of the session</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li><b>1×</b>Multimeter</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li><li><b>2×</b>Beakers (25 mL)</li><li><b>1×</b>each: Cu, Zn, Mg and Al</li><li><b>2×</b>Filter papers</li><li>~75 mL 0.1 M HCl</li><li><b>1×</b>Waste beaker (500 mL)</li><li>PPE (gloves, goggles, lab coat)</li><li><b>1×</b>DI water bottle</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s2e1-1"><span class="num">1</span><span class="txt">Choose an anode metal (Zn, Mg or Al) to test against Cu. Clip both to opposite sides of a clean beaker. Make sure they do not touch.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e1-2"><span class="num">2</span><span class="txt">Carefully add ~25 mL of 0.1 M HCl. Connect the multimeter and 1 Ω resistor as in Session 1.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e1-3"><span class="num">3</span><span class="txt">Record the voltage across the resistor at 0 to 5 minutes. Note what you observe.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e1-4"><span class="num">4</span><span class="txt">Pour the acid into the waste beaker and rinse with DI water. Repeat with the other two metals.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e1-5"><span class="num">5</span><span class="txt">Calculate current and power. Plot all three pairings on the graph.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div><div class="fig"><img src="img/cell.png" alt="Cu and another metal strip in a beaker of HCl connected to a resistor and multimeter" loading="lazy"></div><p class="cap">Same set-up as Session 1</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Wear your PPE at all times. Tell a demonstrator straight away about any spills.</p></div><div class="call blue"><span class="tag">LEGO MOTOR</span><p>Not every group gets one. When you think your cell can do it, ask a demonstrator to try it on the motor.</p></div><div class="call org"><span class="tag">CHOOSE</span><p>Pick the best-performing pairing. You will use it for the rest of the session.</p></div>
+</div>
+<div class="exp reveal" id="s2e2">
+  <header><span class="mono"><b>Experiment 2 · 30 min</b></span></header>
+  <h3>Changing the Solution</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Compare how different acids affect the performance of your best metal pairing</li><li>Compare the strong acids (HCl, H<sub>2</sub>SO<sub>4</sub>) with the weak acid (acetic acid)</li><li>Choose the best-performing solution</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li>Your best metal pairing from Experiment 1</li><li><b>1×</b>Multimeter</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li><li><b>1×</b>Beaker (25 mL)</li><li>~25 mL 0.1 M HCl</li><li>~25 mL 0.1 M acetic acid (CH₃COOH)</li><li>~25 mL 0.1 M sulfuric acid (H₂SO₄)</li><li><b>1×</b>Waste beaker (500 mL)</li><li>PPE (gloves, goggles, lab coat)</li><li><b>1×</b>DI water bottle</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s2e2-1"><span class="num">1</span><span class="txt">Use your best Cu-metal pairing from Experiment 1 in a clean beaker.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e2-2"><span class="num">2</span><span class="txt">Add ~25 mL of 0.1 M HCl and record the voltage across the resistor at 0 to 5 minutes.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e2-3"><span class="num">3</span><span class="txt">Pour the acid into the waste beaker and rinse with DI water. Repeat with acetic acid, then sulfuric acid.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e2-4"><span class="num">4</span><span class="txt">Calculate current and power. Plot all three solutions on the graph.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div><div class="fig"><img src="img/cell.png" alt="Metal strips in a beaker of acid connected to a resistor and multimeter" loading="lazy"></div><p class="cap">Same set-up, different solution</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Wear your PPE at all times. Tell a demonstrator straight away about any spills.</p></div><div class="call blue"><span class="tag">LEGO MOTOR</span><p>Not every group gets one. When you think your cell can do it, ask a demonstrator to try it on the motor.</p></div><div class="call org"><span class="tag">THINK</span><p>Which solution was best? Why do you think that is? (Strong vs weak acid)</p></div>
+</div>
+<div class="exp reveal" id="s2e3">
+  <header><span class="mono"><b>Experiment 3 · 30 min</b></span></header>
+  <h3>Changing the Surface Area</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Change the exposed surface area of the anode and measure the effect on voltage and power</li><li>Compare small, medium and large surface areas</li><li>Choose the best surface area for your final design</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li>Your best metal pairing from Experiment 1</li><li>Your best solution (~25 mL)</li><li><b>1×</b>Multimeter</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li><li><b>1×</b>Beaker (25 mL)</li><li><b>1×</b>Waste beaker (500 mL)</li><li>PPE (gloves, goggles, lab coat)</li><li><b>1×</b>DI water bottle</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s2e3-1"><span class="num">1</span><span class="txt">Use your best pairing and solution. Dip only a short length of the anode into the acid (small area) and record the voltage at 0 to 5 minutes.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e3-2"><span class="num">2</span><span class="txt">Repeat with a medium, then a large dipped length (see figure). Keep the other strip and the volume of acid the same.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e3-3"><span class="num">3</span><span class="txt">Calculate current and power. Plot all three on the graph.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div><div class="fig"><img src="img/surface-area.png" alt="Three beakers showing small, medium and large dipped lengths of the anode" loading="lazy"></div><p class="cap">Same strips, same acid. Only the dipped length of the anode changes.</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Wear your PPE at all times. Tell a demonstrator straight away about any spills.</p></div><div class="call blue"><span class="tag">LEGO MOTOR</span><p>Not every group gets one. When you think your cell can do it, ask a demonstrator to try it on the motor.</p></div><div class="call org"><span class="tag">TRADE-OFFS</span><p>Which area was best? Was there any trade-off?</p></div>
+</div>
+<div class="exp reveal" id="s2e4">
+  <header><span class="mono"><b>Battery Design · 25 min</b></span></header>
+  <h3>Design Your Battery</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Recap what you have learned about metals, solutions and surface area</li><li>Draw how your cells could fit in the tic-tac boxes and on the Lego car</li><li>Record your ideas and observations ready for Session 3</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li><b>3×</b>Tic-tac boxes</li><li><b>1×</b>Lego car (shared: ask a demonstrator)</li><li><b>1×</b>A3 sketch sheet (from a demonstrator)</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s2e4-1"><span class="num">1</span><span class="txt">Recap everything you have learned so far. Use the table on the back of your handout to write down your findings and observations.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e4-2"><span class="num">2</span><span class="txt">Try to design your battery by drawing it: how could your cells fit in the tic-tac boxes and on the Lego car? Use the A3 sketch sheet if you need it.</span></label></li><li><label class="step"><input type="checkbox" data-k="s2e4-3"><span class="num">3</span><span class="txt">Play around with the tic-tac boxes and the Lego car. What fits? What would you change?</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div class="photo"><img src="img/car-red.jpg" alt="Lego car" loading="lazy"></div><p class="cap">The Lego car you will fit your cells onto</p></div></div>
+  <div class="call red"><span class="tag">NO ACID</span><p>Today is all about planning. Draw first, and bring your ideas to Session 3.</p></div>
+</div>
+</div></section>
+
+<section id="s3" class="s3"><div class="wrap">
+<div class="sh reveal"><span class="idx">03</span><div><p class="mono">Session 3 · Friday 23 October 2026</p><h2>Race <em>Day!</em></h2><p class="sub">Build your best battery pack, then race your Lego car down the 5 m track.</p></div></div>
+<div class="card reveal"><h4>Recap: what did we find in Session 2?</h4><div class="qa"><details><summary>What was your best metal combo?</summary><div class="a">Look at your Session 2 table.</div></details><details><summary>What was your best solution?</summary><div class="a">Why do you think it was the best? Think about strong and weak acids.</div></details><details><summary>Any other factors?</summary><div class="a">Surface area? Distance between the electrodes? How long it lasts?</div></details><details><summary>Your tic-tac box design</summary><div class="a">Summarise your findings and your drawing from Session 2.</div></details></div></div>
+
+<div class="sh reveal" style="margin-top:64px"><span class="idx" style="font-size:36px">≤</span><div><h3>Design rules</h3></div></div>
+<div class="grid g4 reveal" style="--acc:var(--y)">
+  <div class="card stat"><div class="v">10 cm</div><p>Mg strips: maximum 10 cm long</p><div class="bar"><i style="width:100%"></i></div></div>
+  <div class="card stat"><div class="v">1 box</div><p>All other metals: no bigger than the tic-tac box</p></div>
+  <div class="card stat"><div class="v">× 3</div><p>Up to 3 of each metal pairing</p></div>
+  <div class="card stat"><div class="v">3 cells</div><p>Maximum 3 cells</p></div>
+</div>
+<div class="card stat reveal" style="margin-top:14px"><div class="v">1 car</div><p>Same Lego car for everyone</p></div>
+<div class="call blue"><span class="tag">LEGO CAR</span><p>Ask a demonstrator to try your cells on the car. You can still use the Lego motor if you want.</p></div>
+
+<div class="exp reveal" id="s3e1">
+  <header><span class="mono"><b>Final optimisation · 80 min</b></span></header>
+  <h3>Build Your Pack</h3>
+  <div class="cols">
+    <div><h4>By the end you will be able to</h4><ol class="obj"><li>Recap your findings and draw a design that follows the design limits</li><li>Build and test one cell, then keep improving it</li><li>Review your final design with a demonstrator and build your cells (maximum 3)</li></ol></div>
+    <div><h4>You will need</h4><ul class="need"><li><b>3×</b>Tic-tac boxes</li><li>Metal strips: Cu, Zn, Mg, Al</li><li><b>2×</b>Filter papers</li><li>Acids (0.1 M): HCl, H₂SO₄, acetic acid</li><li><b>2×</b>Beakers</li><li><b>1×</b>A3 sketch sheet (if needed)</li><li><b>1×</b>Multimeter</li><li><b>1×</b>1 Ω resistor</li><li><b>8×</b>Alligator clips</li><li><b>1×</b>Waste beaker (500 mL)</li><li>PPE (gloves, goggles, lab coat)</li><li><b>1×</b>DI water bottle</li></ul></div>
+  </div>
+  <div class="how"><div><h4>How to do it</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="s3e1-1"><span class="num">1</span><span class="txt">Recap what you learned in Session 2 and complete the summary table on the back.</span></label></li><li><label class="step"><input type="checkbox" data-k="s3e1-2"><span class="num">2</span><span class="txt">Draw first: sketch your design on the A3 sheet if you have not already. Check it against the design limits.</span></label></li><li><label class="step"><input type="checkbox" data-k="s3e1-3"><span class="num">3</span><span class="txt">Build one cell in a tic-tac box. Record the voltage across the resistor at 0 to 5 minutes, then calculate current and power.</span></label></li><li><label class="step"><input type="checkbox" data-k="s3e1-4"><span class="num">4</span><span class="txt">Keep testing and improving. Change ONE thing at a time and record each design.</span></label></li><li><label class="step"><input type="checkbox" data-k="s3e1-5"><span class="num">5</span><span class="txt">Show your final (or nearly final) design to a demonstrator. You may ask for fresh materials. Then build your cells (maximum 3).</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div><div class="sticky"><div class="photo"><img src="img/car-blue.jpg" alt="Lego car at the start line" loading="lazy"></div><p class="cap">Same car for everyone</p></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Wear your PPE at all times. Tell a demonstrator straight away about any spills.</p></div><div class="call org"><span class="tag">TIP</span><p>Changing one thing at a time tells you exactly what made the difference.</p></div>
+</div>
+
+<div class="exp reveal" id="race" style="margin-top:44px">
+  <header><span class="mono"><b>The Race · 45 min</b></span></header>
+  <h3>Before the race</h3>
+  <p class="sub">Discuss with your team and fill in the decisions table on the back of your handout.</p>
+  <div class="how"><div><h4>Race rules</h4><ol class="steps"><li><label class="step"><input type="checkbox" data-k="race-b-1"><span class="num">1</span><span class="txt">You have about 20 minutes to build your cells.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-b-2"><span class="num">2</span><span class="txt">Choose your acid solution (type and concentration). A demonstrator will pour it into a small beaker for you.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-b-3"><span class="num">3</span><span class="txt">One team member pitches your design in 1 minute, explaining each decision.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-b-4"><span class="num">4</span><span class="txt">One attempt per team. Make it count!</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div>
+   <div class="sticky"><div class="card" style="--acc:var(--y)"><div class="n" style="font-size:72px">5 m</div><p>straight track. Fastest to the finish line wins!</p></div></div></div>
+  <div class="call red"><span class="tag">SAFETY</span><p>Do NOT put the solution in your cells until you are at the track. They will discharge. Wear your PPE at all times.</p></div>
+
+  <h3 style="margin-top:56px">The track</h3>
+  <div style="margin-top:18px"><div><div class="fig"><img src="img/race-track.png" alt="Diagram of the 5 metre straight track with start and finish lines" loading="lazy"></div><p class="cap">5 m straight track</p></div></div>
+  <div class="call org"><span class="tag">TIMING</span><p>The timer starts when the car moves and stops when the whole car passes the finish line.</p></div>
+
+  <h3 style="margin-top:56px">At the track</h3>
+  <div class="how noimg"><div><ol class="steps"><li><label class="step"><input type="checkbox" data-k="race-t-1"><span class="num">1</span><span class="txt">Two members of the team set up.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-t-2"><span class="num">2</span><span class="txt">Add the solution to your cells and place your Lego car behind the starting line.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-t-3"><span class="num">3</span><span class="txt">Connect only ONE side of your cells.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-t-4"><span class="num">4</span><span class="txt">Wait for the countdown: 3, 2, 1, GO!</span></label></li><li><label class="step"><input type="checkbox" data-k="race-t-5"><span class="num">5</span><span class="txt">On GO, connect your car. When the car moves, the timer starts.</span></label></li><li><label class="step"><input type="checkbox" data-k="race-t-6"><span class="num">6</span><span class="txt">Once the WHOLE car passes the finish line, the timer stops.</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div></div>
+  <div class="call "><span class="tag">ON GO</span><p>Two members set up. Connect ONE side first, count down 3, 2, 1, GO, then connect the car.</p></div>
+</div>
+
+<div class="sh reveal" style="margin-top:80px"><span class="idx" style="font-size:36px">★</span><div><p class="mono">Wrap-up</p><h2>Prizes and <em>well done!</em></h2></div></div>
+<div class="grid g4 reveal">
+  <div class="card prize"><div class="n" style="color:#e3b341">1</div><h5>1st place</h5><p>Fastest car</p></div>
+  <div class="card prize"><div class="n" style="color:#a4afc2">2</div><h5>2nd place</h5><p>Second fastest car</p></div>
+  <div class="card prize"><div class="n" style="color:var(--b)">3</div><h5>Best team work</h5><p>Team work in all 3 sessions</p></div>
+  <div class="card prize"><div class="n" style="color:#b46fd6">4</div><h5>Most curious</h5><p>Asked great questions</p></div>
+</div>
+<p class="sub reveal" style="margin-top:18px">Thank you everyone for your effort and curiosity!</p>
+</div></section>
+
+<section id="waste"><div class="wrap">
+<div class="sh reveal"><span class="idx">♻</span><div><p class="mono">Every session</p><h2>Clean-up time: <em>sort your waste!</em></h2></div></div>
+<div class="grid g4 reveal"><div class="card bin"><div class="top" style="background:#2e75b6"></div><h5>Liquid waste</h5><p>Used acid and DI water rinse. Pour into your waste beaker first, then into the liquid waste container.</p></div><div class="card bin"><div class="top" style="background:#ed7d31"></div><h5>Laboratory solids</h5><p>Used metal strips and filter papers.</p></div><div class="card bin"><div class="top" style="background:#1a6fa8"></div><h5>Contaminated gloves</h5><p>Used gloves go here. Take them off last!</p></div><div class="card bin"><div class="top" style="background:#5a6478"></div><h5>Domestic waste</h5><p>Clean rubbish only: paper and wrappers. Nothing that touched acid.</p></div></div>
+<div class="how noimg reveal" style="margin-top:30px"><div><ol class="steps"><li><label class="step"><input type="checkbox" data-k="waste-1"><span class="num">1</span><span class="txt">Pour used acid into the waste beaker</span></label></li><li><label class="step"><input type="checkbox" data-k="waste-2"><span class="num">2</span><span class="txt">Rinse equipment with DI water</span></label></li><li><label class="step"><input type="checkbox" data-k="waste-3"><span class="num">3</span><span class="txt">Sort solids into the right bin</span></label></li><li><label class="step"><input type="checkbox" data-k="waste-4"><span class="num">4</span><span class="txt">Gloves off last, then wash your hands</span></label></li></ol><p class="hint">Tap a step to tick it off</p></div></div>
+<div class="call red"><span class="tag">NOT SURE?</span><p>Ask a demonstrator before you put anything in a bin.</p></div>
+</div></section>
+
+<footer><div class="wrap">
+  <p class="mono">Chemical Battery Design Project · UNSW Experience Chemical Engineering Week</p>
+  <h2 style="margin-top:18px">Thank <em>you!</em></h2>
+  <p class="sub">Great work, everyone. Clean up your bench and ask a demonstrator if you have any questions.</p>
+</div></footer>
+
+</main>
+<div class="timer" id="timer" role="group" aria-label="5 minute experiment timer">
+<span class="t" id="tt">0:00</span><span class="msg" id="tm">5 min timer</span>
+<button id="tgo" type="button">Start</button><button id="trs" class="g" type="button">Reset</button></div>
+<script>
+(function(){
+ // tick-off steps (remembered on this device only)
+ var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+ document.querySelectorAll('.step input').forEach(function(i){
+  var k='cb-'+i.dataset.k; if(store.get(k)==='1') i.checked=true;
+  i.addEventListener('change',function(){store.set(k,i.checked?'1':'0')});
+ });
+ // calculator
+ var vin=document.getElementById('vin');
+ function fmt(x){ if(!isFinite(x)) return '–'; var a=Math.abs(x); return (a>=1?x.toFixed(2):x.toPrecision(2)).replace(/\.?0+$/,function(m){return m.indexOf('.')===0 && m.length>1 ? '' : m}); }
+ if(vin){vin.addEventListener('input',function(){
+   var v=parseFloat(vin.value); var i=document.getElementById('iout'), p=document.getElementById('pout');
+   if(isNaN(v)){i.textContent='–';p.textContent='–';return}
+   i.textContent=fmt(v/1); p.textContent=fmt(v*(v/1));
+ });}
+ // predictor
+ var an=document.getElementById('an'), ca=document.getElementById('ca');
+ function pred(){ if(!an||!ca) return;
+   var a=parseFloat(an.value), c=parseFloat(ca.value), r=c-a;
+   var an_n=an.options[an.selectedIndex].text.split(' · ')[0], ca_n=ca.options[ca.selectedIndex].text.split(' · ')[0];
+   document.getElementById('vcell').textContent=(r>0?r:0).toFixed(2)+' V';
+   document.getElementById('vmath').textContent=c.toFixed(2)+' − ('+a.toFixed(2)+') = '+r.toFixed(2)+' V';
+   document.getElementById('vnote').textContent= r>0 ? 'Anode: '+an_n+' · Cathode: '+ca_n : 'The anode must be more negative than the cathode. Try swapping them.';
+ }
+ if(an&&ca){an.addEventListener('change',pred);ca.addEventListener('change',pred);pred();}
+ // nav highlight
+ var links=[].slice.call(document.querySelectorAll('.nav a.l'));
+ var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+ function setNav(){
+   var y=window.innerHeight*0.4, cur=null;
+   secs.forEach(function(s){ if(s.getBoundingClientRect().top<=y) cur=s; });
+   links.forEach(function(a){a.classList.toggle('on',!!cur && a.getAttribute('href')==='#'+cur.id)});
+   var on=document.querySelector('.nav a.l.on'); if(on){var ul=on.parentNode.parentNode; ul.scrollLeft=on.offsetLeft-ul.clientWidth/2+on.clientWidth/2;}
+ }
+ window.addEventListener('scroll',setNav,{passive:true}); setNav();
+ if('IntersectionObserver' in window){
+  var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}})},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){rv.observe(el)});
+ } else {document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})}
+ // 5-minute timer
+ var t0=0,run=false,tick=null,said=-1,ctx=null;
+ var tt=document.getElementById('tt'),tm=document.getElementById('tm'),box=document.getElementById('timer'),go=document.getElementById('tgo'),rs=document.getElementById('trs');
+ function beep(n){ try{ ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); var o=ctx.createOscillator(),g=ctx.createGain(); o.frequency.value=n>=5?880:660; g.gain.value=.15; o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.18);}catch(e){} try{navigator.vibrate&&navigator.vibrate(150)}catch(e){} }
+ function show(ms){var s=Math.floor(ms/1000);tt.textContent=Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+ function loop(){
+   var ms=Date.now()-t0; if(ms>=300000){ms=300000}
+   show(ms); var m=Math.floor(ms/60000);
+   if(m!==said){said=m; box.classList.add('flash'); tm.textContent= m<5 ? 'Record the voltage now · minute '+m : 'Done! Calculate I and P'; beep(m); setTimeout(function(){box.classList.remove('flash')},4000);}
+   if(ms>=300000){clearInterval(tick);run=false;go.textContent='Start';}
+ }
+ go.addEventListener('click',function(){
+   if(run){clearInterval(tick);run=false;go.textContent='Start';tm.textContent='Paused';return}
+   if(tt.textContent==='5:00'){reset();}
+   var cur=(tt.textContent.split(':'));var ms=(parseInt(cur[0])*60+parseInt(cur[1]))*1000;
+   t0=Date.now()-ms; said=Math.floor(ms/60000)-1; if(ms===0) said=-1;
+   run=true;go.textContent='Pause';loop();tick=setInterval(loop,250);
+ });
+ function reset(){clearInterval(tick);run=false;said=-1;tt.textContent='0:00';tm.textContent='5 min timer';go.textContent='Start';box.classList.remove('flash')}
+ rs.addEventListener('click',reset);
+})();
+</script>
+</body>
+</html>
